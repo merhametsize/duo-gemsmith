@@ -1,6 +1,7 @@
-# **💎 D U O - G E M S M I T H    -    D U O L I N G O   G E M   H A C K ⛏️**
+# **💎DUO-GEMSMITH -- DUOLINGO GEM HACK⛏️**
 The energy mechanic won't be a pain anymore should you wanna do more than 2 lesson a day.
-### **Usage**
+
+## **💻Usage**
 
 The script needs your JWT (Json Web Token) to function. You can capture your JWT by signing in to Duolingo, opening web devloper tools (F12), and executing this command in the console:
 
@@ -17,14 +18,14 @@ Paste your token inside jwt.txt and execute the script.
 
 ## **🛠️ Setup and Installation**
 
-\# Clone the repository  
+Clone the repository  
 
 ```bash
 git clone https://github.com/merhametsize/duo-gemsmith.git
 cd duo-gemsmith
 ```
 
-\# Install dependencies  
+Install dependencies  
 
 ```bash
 pip install requests
