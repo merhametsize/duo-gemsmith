@@ -3,7 +3,7 @@ The energy mechanic won't be a pain anymore should you wanna do more than 2 less
 
 ## **💻Usage**
 
-The script needs your JWT (Json Web Token) to function. You can capture your JWT by signing in to Duolingo, opening web devloper tools (F12), and executing this command in the console:
+The script needs your JWT (Json Web Token) to function. You can capture your JWT by signing in to Duolingo, opening web developer tools (F12), and executing this command in the console:
 
 ```javascript
 document.cookie.split('; ').find(row => row.startsWith('jwt_token=')).split('=')[1]
@@ -13,8 +13,10 @@ If your browser doesn't allow you to paste a command, first execute:
 ```javascript
 allow pasting
 ```
+The cosole will print a token like:
+```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY1NTAyMTA4MCwiaWF0IjoxNzYyMTk4MDczLCJleHAiOjE3NjIyMDE2NzN9.e7w0xT1u-hK_5M2c4R9j0sT6pQ8vB7yD3fA1gF2iL5kM```
 
-Paste your token inside jwt.txt and execute the script.
+Copy it, paste it inside jwt.txt and execute the script.
 
 ## **🛠️ Setup and Installation**
 
