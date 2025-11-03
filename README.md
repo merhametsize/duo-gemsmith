@@ -1,5 +1,5 @@
 # **💎DUO-GEMSMITH -- DUOLINGO GEM HACK⛏️**
-The energy mechanic won't be a pain anymore should you wanna do more than 2 lesson a day.
+The energy mechanic won't be a pain anymore should you wanna do more than 2 lessons a day.
 
 ## **💻Usage**
 
