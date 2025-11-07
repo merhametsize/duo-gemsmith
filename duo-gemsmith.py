@@ -84,14 +84,14 @@ def send_patch_request(url, headers, data):
     try:
         response = requests.patch(url, headers=headers, json=data, timeout=10)
 
-        print(f'[{time.strftime('%H:%M:%S')}] Status: {response.status_code}', end='')
+        print(f'[{time.strftime("%H:%M:%S")}] Status: {response.status_code}', end='')
 
         # Check for non-successful status codes
         response.raise_for_status()
 
     except requests.exceptions.RequestException as err:
         # Catch all errors (HTTP errors, connection, timeout, etc.)
-        print(f'[{time.strftime('%H:%M:%S')}] ERROR: {err}', file=sys.stderr)
+        print(f'[{time.strftime("%H:%M:%S")}] ERROR: {err}', file=sys.stderr)
 
 def read_jwt(filepath: str) -> str:
     if not os.path.exists(filepath):
