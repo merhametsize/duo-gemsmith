@@ -13,8 +13,8 @@ If your browser doesn't allow you to paste a command, first execute:
 ```javascript
 allow pasting
 ```
-The console will print a token like (mock token):
-```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY1NTAyMTA4MCwiaWF0IjoxNzYyMTk4MDczLCJleHAiOjE3NjIyMDE2NzN9.e7w0xT1u-hK_5M2c4R9j0sT6pQ8vB7yD3fA1gF2iL5kM```
+The console will print a token like:
+```eyJhbGciOiJ6aW9wZXJhIiwidHlwIjoib25jbGVwb2lyZSJ9.eyJzdWIiOiIyMS4zNyIsIm5hbWUiOiJKb2huIFBhdWwgSUIiLCJpYXQiOjB9.V4W14t-6tsEr5hwzFYlM0_XTHOyFCloudNM4LRo6TgI```
 
 Clone the repo, install dependencies, copy and paste the token inside jwt.txt:
 
