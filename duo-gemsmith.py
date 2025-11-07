@@ -149,7 +149,7 @@ if __name__ == '__main__':
         print(f'[*] Userid: {userid}')
         print(f'[*] URL: {api_url}')
         print(f'[*] Time interval: {MIN_INTERVAL}-{MAX_INTERVAL}')
-        print(f'[*] User-Agent: {HEADERS['User-Agent']}')
+        print(f'[*] User-Agent: {HEADERS["User-Agent"]}')
         print('[*] Press Ctrl+C to stop the script.', end='\n\n')
         #print('-' * 70, end ='\n\n')
 
