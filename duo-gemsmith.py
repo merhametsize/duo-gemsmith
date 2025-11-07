@@ -30,9 +30,9 @@ MAX_INTERVAL = 60
 
 #We claim the reward from the EN->FR course
 PAYLOAD = {
-    "consumed":True,
-    "fromLanguage":"en",
-    "learningLanguage":"fr",
+    'consumed':True,
+    'fromLanguage':'en',
+    'learningLanguage':'fr',
 }
 
 #We randomize the user-agent field of the PATCH request when the script is launched, this makes for more stealth
@@ -58,44 +58,44 @@ USER_AGENTS = [
 ]
 
 HEADERS = {
-    "Host": "www.duolingo.com",
-    "User-Agent": random.choice(USER_AGENTS),
-    "Accept": "application/json; charset=UTF-8",
-    "Accept-Language": "en-US,en;q=0.5",
-    "Accept-Encoding": "gzip, deflate, br, zstd",
-    "Content-Type": "application/json; charset=UTF-8",
-    "Referer": "https://www.duolingo.com/learn",
-    "X-Requested-With": "XMLHttpRequest",
-    "Origin": "https://www.duolingo.com",
-    "Sec-Fetch-Dest": "empty",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Site": "same-origin",
-    "DNT": "1",
-    "Sec-GPC": "1",
-    "Priority": "u=0",
-    "Pragma": "no-cache",
-    "Cache-Control": "no-cache",
-    "Authorization": "Bearer TOKEN_PLACEHOLDER",
-    "Connection": "keep-alive",
-    "TE": "trailers"
+    'Host': 'www.duolingo.com',
+    'User-Agent': random.choice(USER_AGENTS),
+    'Accept': 'application/json; charset=UTF-8',
+    'Accept-Language': 'en-US,en;q=0.5',
+    'Accept-Encoding': 'gzip, deflate, br, zstd',
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Referer': 'https://www.duolingo.com/learn',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Origin': 'https://www.duolingo.com',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-origin',
+    'DNT': '1',
+    'Sec-GPC': '1',
+    'Priority': 'u=0',
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-cache',
+    'Authorization': 'Bearer TOKEN_PLACEHOLDER',
+    'Connection': 'keep-alive',
+    'TE': 'trailers'
 }
 
 def send_patch_request(url, headers, data):
     try:
         response = requests.patch(url, headers=headers, json=data, timeout=10)
 
-        print(f"[{time.strftime('%H:%M:%S')}] Status: {response.status_code}", end="")
+        print(f'[{time.strftime('%H:%M:%S')}] Status: {response.status_code}', end='')
 
         # Check for non-successful status codes
         response.raise_for_status()
 
     except requests.exceptions.RequestException as err:
         # Catch all errors (HTTP errors, connection, timeout, etc.)
-        print(f"[{time.strftime('%H:%M:%S')}] ERROR: {err}", file=sys.stderr)
+        print(f'[{time.strftime('%H:%M:%S')}] ERROR: {err}', file=sys.stderr)
 
 def read_jwt(filepath: str) -> str:
     if not os.path.exists(filepath):
-        print(f"Error: Token file '{filepath}' not found.", file=sys.stderr)
+        print(f'Error: Token file {filepath} not found.', file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -110,55 +110,55 @@ def read_jwt(filepath: str) -> str:
                     # Return the base64-encoded userid
                     return token, parts[1]
                 else:
-                    print("Error: File contains a malformed JWT. Expected 3 parts.", file=sys.stderr)
+                    print('Error: File contains a malformed JWT. Expected 3 parts.', file=sys.stderr)
                 sys.exit(1)
 
     except IOError as e:
-        print(f"Error reading token file: {e}", file=sys.stderr)
+        print(f'Error reading token file: {e}', file=sys.stderr)
         sys.exit(1)
 
 def decode_token(base64_userid: str) -> str:
     try:
         padded = base64_userid + '=' * (-len(base64_userid) % 4)
-        userid = json.loads(base64.urlsafe_b64decode(padded))["sub"]
+        userid = json.loads(base64.urlsafe_b64decode(padded))['sub']
     except Exception as e:
-        print(f"Error decoding token: {str(e)}[/]", file=sys.stderr)
+        print(f'Error decoding token: {str(e)}[/]', file=sys.stderr)
         sys.exit(1)
     return userid
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     username = getpass.getuser() #The user running this script, for easter egg purposes
 
     #You can write literally anything in between the dashes...
     reward = f'SKILL_COMPLETION_BALANCED-{username}DoesntLikeEnergy-2-GEMS'
 
     try:
-        print("=" * 70)
-        print("💎 D U O - G E M S M I T H    -    D U O L I N G O   G E M   H A C K ⛏️")
-        print("  The energy mechanic won't be a pain anymore should you wanna\n\t\tdo more than 2 lesson a day")
-        print("=" * 70, end='\n\n')
+        print('=' * 70)
+        print('💎 D U O - G E M S M I T H    -    D U O L I N G O   G E M   H A C K ⛏️')
+        print('  The energy mechanic won\'t be a pain anymore should you wanna\n\t\tdo more than 2 lesson a day')
+        print('=' * 70, end='\n\n')
 
         token, base64_userid = read_jwt('./jwt.txt')
         userid = decode_token(base64_userid)
 
-        api_url = f"https://www.duolingo.com/2017-06-30/users/{userid}/rewards/{reward}"
-        HEADERS["Authorization"] = HEADERS["Authorization"].replace("TOKEN_PLACEHOLDER", token)
+        api_url = f'https://www.duolingo.com/2017-06-30/users/{userid}/rewards/{reward}'
+        HEADERS['Authorization'] = HEADERS['Authorization'].replace('TOKEN_PLACEHOLDER', token)
 
         print('[*] Successfuly read jtw.txt')
         print(f'[*] JWT: {base64_userid}')
         print(f'[*] Userid: {userid}')
         print(f'[*] URL: {api_url}')
         print(f'[*] Time interval: {MIN_INTERVAL}-{MAX_INTERVAL}')
-        print(f'[*] User-Agent: {HEADERS["User-Agent"]}')
-        print("[*] Press Ctrl+C to stop the script.", end='\n\n')
-        #print("-" * 70, end ='\n\n')
+        print(f'[*] User-Agent: {HEADERS['User-Agent']}')
+        print('[*] Press Ctrl+C to stop the script.', end='\n\n')
+        #print('-' * 70, end ='\n\n')
 
         request_count = 0
         gems = 0
 
         while True:
             request_count += 1
-            print(f"Request #{request_count}: ", end="", flush=True)
+            print(f'Request #{request_count}: ', end='', flush=True)
 
             send_patch_request(api_url, HEADERS, PAYLOAD)
             gems += 30
@@ -168,4 +168,4 @@ if __name__ == "__main__":
             time.sleep(current_interval)
 
     except KeyboardInterrupt:
-        print("\nScript terminated by user.")
+        print('\nScript terminated by user.')
