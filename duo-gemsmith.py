@@ -145,7 +145,7 @@ if __name__ == '__main__':
         HEADERS['Authorization'] = HEADERS['Authorization'].replace('TOKEN_PLACEHOLDER', token)
 
         print('[*] Successfuly read jtw.txt')
-        print(f'[*] JWT: {token}')
+        print(f'[*] JWT: {token.split(".")[0] + "." + token.split(".")[1] + ".[signature]"}')
         print(f'[*] Userid: {userid}')
         print(f'[*] URL: {api_url}')
         print(f'[*] Time interval: {MIN_INTERVAL}-{MAX_INTERVAL}')
