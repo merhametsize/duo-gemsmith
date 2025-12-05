@@ -144,7 +144,7 @@ if __name__ == '__main__':
         api_url = f'https://www.duolingo.com/2017-06-30/users/{userid}/rewards/{reward}'
         HEADERS['Authorization'] = HEADERS['Authorization'].replace('TOKEN_PLACEHOLDER', token)
 
-        print('[*] Successfuly read jtw.txt')
+        print('[*] Successfuly read jwt.txt')
         print(f'[*] JWT: {token.split(".")[0] + "." + token.split(".")[1] + ".[signature]"}')
         print(f'[*] Userid: {userid}')
         print(f'[*] URL: {api_url}')
